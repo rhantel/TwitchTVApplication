@@ -18,6 +18,8 @@ public class TwitchTVStream {
     /** Name of the TwitchTV channel */
     private final String TWITCH_USERNAME;
     
+    private final String STREAM_PROPERTY = "stream";
+    
     public TwitchTVStream(final String username) {
         this.TWITCH_USERNAME = username;
     }
@@ -29,7 +31,7 @@ public class TwitchTVStream {
             
             JsonObject streamJson = (JsonObject) parser.parse(response);
             
-            return streamJson.get("stream").isJsonNull() == false;
+            return streamJson.get(this.STREAM_PROPERTY).isJsonNull() == false;
                     
         } catch (IOException | MimeTypeParseException ex) {
             throw ex;
