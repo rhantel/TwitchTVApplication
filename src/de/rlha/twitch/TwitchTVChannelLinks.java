@@ -88,7 +88,7 @@ public class TwitchTVChannelLinks {
         this.TWITCH_USERNAME = username;
         
         try {
-            this.RESPONSE = HttpRequest.performRequest(this.TWITCH_API_CHANNELS_BASE_URL + this.TWITCH_USERNAME, MIME_TYPE);
+            this.RESPONSE = HttpRequest.performRequest(this.TWITCH_API_CHANNELS_BASE_URL + this.TWITCH_USERNAME, this.MIME_TYPE);
         } catch (IOException | MimeTypeParseException ex) {
             throw new FetchLinksException();
         }
