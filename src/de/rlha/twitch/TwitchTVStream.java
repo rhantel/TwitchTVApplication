@@ -21,6 +21,10 @@ public class TwitchTVStream {
     private final String STREAM_PROPERTY = "stream";
     
     public TwitchTVStream(final String username) {
+        if (username == null || username.isEmpty()) {
+            throw new IllegalArgumentException("username cannot be null or empty");
+        }
+        
         this.TWITCH_USERNAME = username;
     }
     

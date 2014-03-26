@@ -85,6 +85,10 @@ public class TwitchTVChannelLinks {
      *                              is not compatible or has format errors
      */
     public TwitchTVChannelLinks(final String username) throws FetchLinksException {
+        if (username == null || username.isEmpty()) {
+            throw new IllegalArgumentException("username cannot be null or \"\"");
+        }
+        
         this.TWITCH_USERNAME = username;
         
         try {
