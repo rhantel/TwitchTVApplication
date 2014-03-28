@@ -121,7 +121,7 @@ public class TwitchTVAppGUI extends javax.swing.JFrame {
                     .addComponent(btnCheckLive))
                 .addGap(18, 18, 18)
                 .addComponent(lblStreamStatus)
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitle)
                     .addComponent(lblTitleValue))
@@ -137,7 +137,7 @@ public class TwitchTVAppGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUrl)
                     .addComponent(lblUrlValue))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
