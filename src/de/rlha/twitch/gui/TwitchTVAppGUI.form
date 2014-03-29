@@ -36,19 +36,17 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblGame" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblStreamStatus" min="-2" pref="650" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblViewers" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblUrl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblUrlValue" min="-2" pref="587" max="-2" attributes="0"/>
-                                      <Component id="lblViewersValue" min="-2" pref="587" max="-2" attributes="0"/>
-                                  </Group>
+                          <Component id="lblGame" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStreamStatus" min="-2" pref="650" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblViewers" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblUrl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblUrlValue" min="-2" pref="587" max="-2" attributes="0"/>
+                                  <Component id="lblViewersValue" min="-2" pref="587" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">

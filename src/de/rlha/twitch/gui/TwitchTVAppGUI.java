@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.activation.MimeTypeParseException;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -224,7 +225,7 @@ public class TwitchTVAppGUI extends javax.swing.JFrame {
                         }
                     });
                     
-                    Icon icon = new ImageProxy(new URL(stream.getPreviewMedium()));
+                    Icon icon = new ImageIcon(new URL(stream.getPreviewMedium()));
                     this.lblPreview.setIcon(icon);
                 }
                 else {
@@ -259,7 +260,9 @@ public class TwitchTVAppGUI extends javax.swing.JFrame {
         for (MouseListener listener : this.lblUrlValue.getMouseListeners()) {
             this.lblUrlValue.removeMouseListener(listener);
         }
-        this.lblPreview.setIcon(null);
+        if (this.lblPreview.getIcon() != null)
+            ((ImageIcon) this.lblPreview.getIcon()).getImage().flush();
+        this.lblPreview.setIcon(null);        
     }
     
     /**
