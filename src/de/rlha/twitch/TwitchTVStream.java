@@ -1,5 +1,6 @@
 package de.rlha.twitch;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import de.rlha.twitch.util.HttpRequest;
@@ -58,7 +59,9 @@ public class TwitchTVStream {
         
         if (isLive) {
             this.STREAM_TITLE_VALUE = ((JsonObject)((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_CHANNEL_PROPERTY)).get(STREAM_TITLE_PROPERTY).getAsString();
-            this.STREAM_GAME_VALUE = ((JsonObject)((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_CHANNEL_PROPERTY)).get(STREAM_GAME_PROPERTY).getAsString();
+            JsonObject channelJson = (JsonObject) ((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_CHANNEL_PROPERTY);            
+            JsonElement gameJson = channelJson.get(this.STREAM_GAME_PROPERTY);
+            this.STREAM_GAME_VALUE = gameJson.isJsonNull()?"":gameJson.getAsString();
             this.STREAM_VIEWERS_VALUE = ((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(STREAM_VIEWERS_PROPERTY).getAsString();
             this.STREAM_URL_VALUE = ((JsonObject)((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_CHANNEL_PROPERTY)).get(STREAM_URL_PROPERTY).getAsString();
         }
