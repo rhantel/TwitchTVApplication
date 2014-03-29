@@ -19,7 +19,7 @@ public class TwitchTVStream {
     /** TwitchTV REST API's base URL for a specific channel */
     private final String TWITCH_API_STREAM_BASE_URL = "https://api.twitch.tv/kraken/streams/";
     /** Name of the TwitchTV channel */
-    private final String TWITCH_USERNAME;
+    private final String TWITCH_USERNAME;    
     
     private final String STREAM_PROPERTY = "stream";
     
@@ -33,6 +33,16 @@ public class TwitchTVStream {
     
     private final String STREAM_URL_PROPERTY = "url";
     
+    private final String TWITCH_DISPLAYNAME_PROPERTY = "display_name";
+    
+    private final String STREAM_PREVIEW_PROPERTY = "preview";
+    
+    private final String STREAM_PREVIEW_SMALL_PROPERTY = "small";
+    
+    private final String STREAM_PREVIEW_MEDIUM_PROPERTY = "medium";
+    
+    private final String STREAM_PREVIEW_LARGE_PROPERTY = "large";
+    
     private String STREAM_TITLE_VALUE;
     
     private String STREAM_GAME_VALUE;
@@ -40,6 +50,14 @@ public class TwitchTVStream {
     private String STREAM_VIEWERS_VALUE;
      
     private String STREAM_URL_VALUE;
+    
+    private String TWITCH_DISPLAYNAME_VALUE;        
+    
+    private String STREAM_PREVIEW_SMALL_VALUE = "small";
+    
+    private String STREAM_PREVIEW_MEDIUM_VALUE = "medium";
+    
+    private String STREAM_PREVIEW_LARGE_VALUE = "large";
     
     public TwitchTVStream(final String username) {
         if (username == null || username.isEmpty()) {
@@ -58,18 +76,27 @@ public class TwitchTVStream {
         boolean isLive = streamJson.get(this.STREAM_PROPERTY).isJsonNull() == false;
         
         if (isLive) {
-            this.STREAM_TITLE_VALUE = ((JsonObject)((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_CHANNEL_PROPERTY)).get(STREAM_TITLE_PROPERTY).getAsString();
-            JsonObject channelJson = (JsonObject) ((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_CHANNEL_PROPERTY);            
+            JsonObject channelJson = (JsonObject) ((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_CHANNEL_PROPERTY);      
+            this.STREAM_TITLE_VALUE = channelJson.get(this.STREAM_TITLE_PROPERTY).getAsString();                  
             JsonElement gameJson = channelJson.get(this.STREAM_GAME_PROPERTY);
             this.STREAM_GAME_VALUE = gameJson.isJsonNull()?"":gameJson.getAsString();
-            this.STREAM_VIEWERS_VALUE = ((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(STREAM_VIEWERS_PROPERTY).getAsString();
-            this.STREAM_URL_VALUE = ((JsonObject)((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_CHANNEL_PROPERTY)).get(STREAM_URL_PROPERTY).getAsString();
+            this.STREAM_VIEWERS_VALUE = ((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_VIEWERS_PROPERTY).getAsString();
+            this.STREAM_URL_VALUE = channelJson.get(this.STREAM_URL_PROPERTY).getAsString();
+            this.TWITCH_DISPLAYNAME_VALUE = channelJson.get(this.TWITCH_DISPLAYNAME_PROPERTY).getAsString();
+            JsonObject previewJson = ((JsonObject) streamJson.get(this.STREAM_PROPERTY)).get(this.STREAM_PREVIEW_PROPERTY).getAsJsonObject();
+            this.STREAM_PREVIEW_SMALL_VALUE = previewJson.get(this.STREAM_PREVIEW_SMALL_PROPERTY).getAsString();
+            this.STREAM_PREVIEW_MEDIUM_VALUE = previewJson.get(this.STREAM_PREVIEW_MEDIUM_PROPERTY).getAsString();
+            this.STREAM_PREVIEW_LARGE_VALUE = previewJson.get(this.STREAM_PREVIEW_LARGE_PROPERTY).getAsString();
         }
         else {
             this.STREAM_TITLE_VALUE = "";
             this.STREAM_GAME_VALUE = "";
             this.STREAM_VIEWERS_VALUE = "";
             this.STREAM_URL_VALUE = "";
+            this.TWITCH_DISPLAYNAME_VALUE = this.TWITCH_USERNAME;
+            this.STREAM_PREVIEW_SMALL_VALUE = "";
+            this.STREAM_PREVIEW_MEDIUM_VALUE = "";
+            this.STREAM_PREVIEW_LARGE_VALUE = "";
         }
 
         return isLive;
@@ -101,5 +128,33 @@ public class TwitchTVStream {
             throw new IllegalStateException("isLive() method has to be called first");
         }
         return this.STREAM_URL_VALUE;
+    }
+    
+    public String getDisplayName() {
+        if (this.TWITCH_DISPLAYNAME_VALUE == null) {
+            throw new IllegalStateException("isLive() method has to be called first");
+        }
+        return this.TWITCH_DISPLAYNAME_VALUE;
+    }
+    
+    public String getPreviewSmall() {
+        if (this.STREAM_PREVIEW_SMALL_VALUE == null) {
+            throw new IllegalStateException("isLive() method has to be called first");
+        }
+        return this.STREAM_PREVIEW_SMALL_VALUE;
+    }
+        
+    public String getPreviewMedium() {
+        if (this.STREAM_PREVIEW_MEDIUM_VALUE == null) {
+            throw new IllegalStateException("isLive() method has to be called first");
+        }
+        return this.STREAM_PREVIEW_MEDIUM_VALUE;
+    }
+            
+    public String getPreviewLarge() {
+        if (this.STREAM_PREVIEW_LARGE_VALUE == null) {
+            throw new IllegalStateException("isLive() method has to be called first");
+        }
+        return this.STREAM_PREVIEW_LARGE_VALUE;
     }
 }
